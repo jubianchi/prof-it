@@ -1,8 +1,4 @@
-# prof-it - Documentation
-
-Profile & Profit
-
-## Profiling
+# prof-it - Profiling
 
 In the following section, we will profile the following code:
 
@@ -20,7 +16,7 @@ function two(int $size): array
 }
 ```
 
-### Run your first profile
+## Run your first profile
 
 To run your first profile you will need an instance of `jubianchi\ProfIt\Profiler`. With this class you will be able to
 start and stop the profiling session: 
@@ -51,4 +47,4 @@ $profile->export(__DIR__);
 
 The `export` method will write the profile data to a file in the provided directory.
 
-### Open your first profile
+## Open your first profile

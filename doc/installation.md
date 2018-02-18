@@ -1,19 +1,15 @@
-# prof-it - Documentation
-
-Profile & Profit
-
-## Installation
+# prof-it - Installation
 
 Make sure you have PHP 7 available on the machine you want to run the profiler. 
 
-### How to install XHProf
+## How to install XHProf
 
 XHProf is used by the profiler to collect data while your scripts are running. You will have to manually compile and 
 install this extension.
 
-#### Prepare your environment
+### Prepare your environment
 
-##### On MacOS
+#### On MacOS
 
 To make things easy, we strongly encourage you to use [Homebrew](https://brew.sh/). It will let you install the most 
 recent PHP versions and development tools which you will need to compile the extension.
@@ -23,7 +19,7 @@ brew install php72
 brew link --force php72
 ```
 
-##### On Debian
+#### On Debian
 
 On Debian, PHP and the development tools are available as two distinct packages. 
 
@@ -32,7 +28,7 @@ sudo apt-get update
 sudo apt-get install php-dev
 ```
 
-##### On RHEL
+#### On RHEL
 
 On RHEL, PHP and the development tools are also available as two distinct packages. 
 
@@ -40,7 +36,7 @@ On RHEL, PHP and the development tools are also available as two distinct packag
 yum install php-devel
 ```
 
-#### Compile the extension
+### Compile the extension
 
 A new version of XHProf has been published by the cool guys at [Tideways](https://tideways.io/). It is available on 
 [Github](https://github.com/tideways/php-xhprof-extension).
@@ -75,7 +71,7 @@ php -m | grep xhprof
 
 You should see `tideways_xhprof` in the output if everything went fine. If it's OK, you are now ready to profile.
 
-### How to install the PHP library
+## How to install the PHP library
 
 The PHP library will be used in the application you want to profile. The only installation method is [Composer](https://getcomposer.org/).
 
@@ -83,12 +79,12 @@ The PHP library will be used in the application you want to profile. The only in
 composer require --dev jubianchi/prof-it
 ```
 
-### How to install the client application
+## How to install the client application
 
 To analyze the results of your profiling sessions, you will need the client application. It will let you open the 
 profiles and navigate trough them.
 
-#### On MacOS
+### On MacOS
 
 The client application is available as a _DMG_ image. Download the latest version from the Github 
 [Releases page](https://github.com/jubianchi/prof-it/releases).
@@ -97,7 +93,7 @@ The client application is available as a _DMG_ image. Download the latest versio
 
 Now mount the image and copy the application to your _Applications_ folder.
 
-#### On Debian
+### On Debian
 
 The client application is available as a _deb_ package. Download the latest version from the Github 
 [Releases page](https://github.com/jubianchi/prof-it/releases).
@@ -106,7 +102,7 @@ The client application is available as a _deb_ package. Download the latest vers
 
 Now open the file by double-clicking on it and your package manager should guide you through the installation process.
 
-#### On RHEL
+### On RHEL
 
 The client application is available as a _rpm_ package. Download the latest version from the Github 
 [Releases page](https://github.com/jubianchi/prof-it/releases).
