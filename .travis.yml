@@ -1,0 +1,21 @@
+language: php
+
+sudo: false
+
+php:
+    - 7.2
+    - nightly
+
+matrix:
+    allow_failures:
+        - php: nightly
+
+cache:
+    directories:
+        - vendor
+
+before_script:
+    - composer install --prefer-dist
+
+script:
+    - composer run test

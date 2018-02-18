@@ -12,8 +12,11 @@ class Profiler extends atoum
 {
     public function beforeTestMethod($_)
     {
+        $this->function->extension_loaded = true;
         $this->function->tideways_xhprof_enable->doesNothing;
         $this->function->tideways_xhprof_disable = [];
+        $this->constant->TIDEWAYS_XHPROF_FLAGS_CPU = 1;
+        $this->constant->TIDEWAYS_XHPROF_FLAGS_MEMORY = 6;
     }
 
     public function testStart()
