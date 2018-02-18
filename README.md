@@ -1,4 +1,4 @@
-# prof-it
+# prof-it [![Build Status](https://travis-ci.org/jubianchi/prof-it.svg?branch=master)](https://travis-ci.org/jubianchi/prof-it)
 
 Profile & Profit
 
