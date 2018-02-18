@@ -1,0 +1,24 @@
+{
+    "name": "jubianchi/prof-it",
+    "description": "Profile & Profit - A PHP profiler base on Tideways XHProf",
+    "license": "MIT",
+    "require": {
+        "clue/graph": "^0.9.0"
+    },
+    "autoload": {
+        "files": [
+            "src/constants.php"
+        ],
+        "psr-4": {
+            "jubianchi\\ProfIt\\": "src/"
+        }
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.10",
+        "atoum/atoum": "^3.2"
+    },
+    "scripts": {
+        "pretty": "php-cs-fixer fix",
+        "test": "atoum -d tests -ft -ebpc"
+    }
+}
