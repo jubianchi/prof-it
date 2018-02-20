@@ -21,3 +21,6 @@ Profile & Profit
 * [Profiling](doc/profiling.md)
     * [Run your first profile](doc/profiling.md#run-your-first-profile)
     * [Open your first profile](doc/profiling.md#open-your-first-profile)
+* [Report](doc/report.md)
+    * [Schemas](doc/report.md#schemas)
+    * [Reference](doc/report.md#reference)
