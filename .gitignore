@@ -2,6 +2,7 @@
 
 # dependencies
 /vendor
+composer.lock
 
 # misc
 .DS_Store
