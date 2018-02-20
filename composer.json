@@ -1,6 +1,6 @@
 {
     "name": "jubianchi/prof-it",
-    "description": "Profile & Profit - A PHP profiler base on Tideways XHProf",
+    "description": "Profile & Profit - A PHP profiler based on Tideways XHProf",
     "license": "MIT",
     "require": {
         "php": "^7.2.0",
