@@ -2,6 +2,8 @@
 
 Profile & Profit
 
+![prof-it](doc/assets/prof-it.jpg)
+
 ## Contents
 
 * [Installation](doc/installation.md)
