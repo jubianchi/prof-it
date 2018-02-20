@@ -3,7 +3,7 @@
     "description": "Profile & Profit - A PHP profiler based on Tideways XHProf",
     "license": "MIT",
     "require": {
-        "php": "^7.2.0",
+        "php": "^7.0.0",
         "clue/graph": "^0.9.0"
     },
     "autoload": {

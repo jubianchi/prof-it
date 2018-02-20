@@ -39,14 +39,14 @@ class Profiler
         return $this->stop();
     }
 
-    private static function isExtensionLoaded(): void
+    private static function isExtensionLoaded()
     {
         if (!extension_loaded('tideways_xhprof')) {
             throw new \BadMethodCallException('Tideways XHProf is not enabled');
         }
     }
 
-    private static function canStart(): void
+    private static function canStart()
     {
         self::isExtensionLoaded();
 
@@ -55,7 +55,7 @@ class Profiler
         }
     }
 
-    private static function canStop(): void
+    private static function canStop()
     {
         self::isExtensionLoaded();
 

@@ -42,7 +42,7 @@ class Profile
                 [
                     'from' => $vertices[$edge->getVertexStart()->getId()]['id'],
                     'to' => $vertices[$edge->getVertexEnd()->getId()]['id'],
-                    'value' => $edge->getAttribute('wt') / $this->graph->getAttribute('wt'),
+                    'value' => round($edge->getAttribute('wt') / $this->graph->getAttribute('wt'), 3),
                 ],
                 $edge->getAttributeBag()->getAttributes()
             );
@@ -79,20 +79,20 @@ class Profile
         ] + $profile;
     }
 
-    public function export(string $path, string $name = null): void
+    public function export(string $path, string $name = null)
     {
         $data = $this->dump($name);
 
         file_put_contents($path.DIRECTORY_SEPARATOR.$data['hash'].'.json', json_encode($data));
     }
 
-    private static function buildGraph(Graph $graph, array $data): void
+    private static function buildGraph(Graph $graph, array $data)
     {
         foreach ($data as $call => $stats) {
             $parts = explode('==>', $call);
 
             if (2 === count($parts)) {
-                [$parent, $child] = $parts;
+                list($parent, $child) = $parts;
 
                 $parent = self::addFunction($graph, $parent);
                 $child = self::addFunction($graph, $child);
@@ -127,9 +127,9 @@ class Profile
                 $vertex->setAttribute('wte', $vertex->getAttribute('wte') - $edge->getAttribute('wt', 0));
             }
 
-            $vertex->setAttribute('wtip', $vertex->getAttribute('wt') / $graph->getAttribute('wt'));
-            $vertex->setAttribute('wtep', $vertex->getAttribute('wte') / $graph->getAttribute('wt'));
-            $vertex->setAttribute('cpup', $vertex->getAttribute('cpu') / $graph->getAttribute('cpu'));
+            $vertex->setAttribute('wtip', round($vertex->getAttribute('wt') / $graph->getAttribute('wt'), 3));
+            $vertex->setAttribute('wtep', round($vertex->getAttribute('wte') / $graph->getAttribute('wt'), 3));
+            $vertex->setAttribute('cpup', round($vertex->getAttribute('cpu') / $graph->getAttribute('cpu'), 3));
         }
 
         if ($graph->hasVertex('init')) {

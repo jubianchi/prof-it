@@ -3,6 +3,8 @@ language: php
 sudo: false
 
 php:
+    - 7.0
+    - 7.1
     - 7.2
     - nightly
 
@@ -16,7 +18,7 @@ cache:
 
 before_script:
     - phpenv config-rm xdebug.ini || true
-    - composer install --prefer-dist
+    - composer install --prefer-dist --classmap-authoritative --ignore-platform-reqs
 
 script:
     - composer run test
