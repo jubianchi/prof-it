@@ -18,8 +18,18 @@ class Profile
     public function __construct(array $data, Graph $graph = null)
     {
         $this->graph = $graph ?: new Graph();
+        $this->data = array_merge(
+            [
+                'php' => null,
+                'osf' => null,
+                'os' => null,
+                'sapi' => null,
+                'profile' => [],
+            ],
+            $data
+        );
 
-        self::buildGraph($this->graph, $data);
+        $this->buildGraph();
     }
 
     public function dump(string $name = null): array
@@ -49,6 +59,10 @@ class Profile
         }
 
         $profile = [
+            'php' => $this->data['php'],
+            'osf' => $this->data['osf'],
+            'os' => $this->data['os'],
+            'sapi' => $this->data['sapi'],
             'functions' => array_values($vertices),
             'calls' => $edges,
         ];
@@ -86,30 +100,30 @@ class Profile
         file_put_contents($path.DIRECTORY_SEPARATOR.$data['hash'].'.json', json_encode($data));
     }
 
-    private static function buildGraph(Graph $graph, array $data)
+    private function buildGraph()
     {
-        foreach ($data as $call => $stats) {
+        foreach ($this->data['profile'] as $call => $stats) {
             $parts = explode('==>', $call);
 
             if (2 === count($parts)) {
                 list($parent, $child) = $parts;
 
-                $parent = self::addFunction($graph, $parent);
-                $child = self::addFunction($graph, $child);
+                $parent = self::addFunction($this->graph, $parent);
+                $child = self::addFunction($this->graph, $child);
 
                 self::addCall($parent, $child, $stats);
             } else {
-                $parent = self::addFunction($graph, 'init');
-                $child = self::addFunction($graph, $parts[0]);
+                $parent = self::addFunction($this->graph, 'init');
+                $child = self::addFunction($this->graph, $parts[0]);
 
-                $graph->setAttribute('wt', $stats['wt']);
-                $graph->setAttribute('cpu', $stats['cpu']);
+                $this->graph->setAttribute('wt', $stats['wt']);
+                $this->graph->setAttribute('cpu', $stats['cpu']);
 
                 self::addCall($parent, $child, $stats);
             }
         }
 
-        foreach ($graph->getVertices() as $vertex) {
+        foreach ($this->graph->getVertices() as $vertex) {
             $edgesIn = $vertex->getEdgesIn();
 
             foreach ($edgesIn as $edge) {
@@ -127,13 +141,13 @@ class Profile
                 $vertex->setAttribute('wte', $vertex->getAttribute('wte') - $edge->getAttribute('wt', 0));
             }
 
-            $vertex->setAttribute('wtip', round($vertex->getAttribute('wt') / $graph->getAttribute('wt'), 3));
-            $vertex->setAttribute('wtep', round($vertex->getAttribute('wte') / $graph->getAttribute('wt'), 3));
-            $vertex->setAttribute('cpup', round($vertex->getAttribute('cpu') / $graph->getAttribute('cpu'), 3));
+            $vertex->setAttribute('wtip', round($vertex->getAttribute('wt') / $this->graph->getAttribute('wt'), 3));
+            $vertex->setAttribute('wtep', round($vertex->getAttribute('wte') / $this->graph->getAttribute('wt'), 3));
+            $vertex->setAttribute('cpup', round($vertex->getAttribute('cpu') / $this->graph->getAttribute('cpu'), 3));
         }
 
-        if ($graph->hasVertex('init')) {
-            $graph->getVertex('init')->destroy();
+        if ($this->graph->hasVertex('init')) {
+            $this->graph->getVertex('init')->destroy();
         }
     }
 

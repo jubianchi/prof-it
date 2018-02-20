@@ -30,15 +30,19 @@ class Profile extends atoum
                 'version' => \jubianchi\ProfIt\PROFIT_PROFILE_VERSION,
                 'name' => $name,
                 'date' => (new \DateTimeImmutable($this->date))->format(DATE_ISO8601),
-                'hash' => 'b49a6991f0854831529db58596424333',
+                'hash' => '7b2a43cc65362ea95996b76939578ed7',
+                'php' => null,
+                'osf' => null,
+                'os' => null,
+                'sapi' => null,
                 'functions' => [],
-                'calls' => []
+                'calls' => [],
             ])
         ;
     }
 
     /**
-     * main() --> A
+     * main() --> A.
      */
     public function testOneCallee()
     {
@@ -58,58 +62,62 @@ class Profile extends atoum
                         'cpu' => 48,
                         'mu' => 90,
                         'pmu' => 0,
-                    ]
+                    ],
                 ],
-                $profile = $this->newTestedInstance($data),
+                $profile = $this->newTestedInstance(['profile' => $data]),
                 $name = uniqid()
             )
             ->then
-            ->array($this->testedInstance->dump($name))->isEqualTo([
-                'version' => \jubianchi\ProfIt\PROFIT_PROFILE_VERSION,
-                'name' => $name,
-                'date' => (new \DateTimeImmutable($this->date))->format(DATE_ISO8601),
-                'hash' => 'd33eaf64ae2b34410cc30a1db06690d8',
-                'functions' => [
-                    [
-                        'id' => 0,
-                        'label' => 'main()',
-                        'ct' => $data['main()']['ct'],
-                        'wt' => $data['main()']['wt'],
-                        'wte' => $data['main()']['wt'] - $data['main()==>A']['wt'],
-                        'cpu' => $data['main()']['cpu'],
-                        'mu' => $data['main()']['mu'],
-                        'pmu' => $data['main()']['pmu'],
-                        'wtip' => 1,
-                        'wtep' => round(($data['main()']['wt'] - $data['main()==>A']['wt']) / $data['main()']['wt'], 3),
-                        'cpup' => 1,
+                ->array($this->testedInstance->dump($name))->isEqualTo([
+                    'version' => \jubianchi\ProfIt\PROFIT_PROFILE_VERSION,
+                    'name' => $name,
+                    'date' => (new \DateTimeImmutable($this->date))->format(DATE_ISO8601),
+                    'hash' => '1d1e9ebbe2a7b6d83954a01f43db7bbe',
+                    'php' => null,
+                    'osf' => null,
+                    'os' => null,
+                    'sapi' => null,
+                    'functions' => [
+                        [
+                            'id' => 0,
+                            'label' => 'main()',
+                            'ct' => $data['main()']['ct'],
+                            'wt' => $data['main()']['wt'],
+                            'wte' => $data['main()']['wt'] - $data['main()==>A']['wt'],
+                            'cpu' => $data['main()']['cpu'],
+                            'mu' => $data['main()']['mu'],
+                            'pmu' => $data['main()']['pmu'],
+                            'wtip' => 1,
+                            'wtep' => round(($data['main()']['wt'] - $data['main()==>A']['wt']) / $data['main()']['wt'], 3),
+                            'cpup' => 1,
+                        ],
+                        [
+                            'id' => 4,
+                            'label' => 'A',
+                            'ct' => $data['main()==>A']['ct'],
+                            'wt' => $data['main()==>A']['wt'],
+                            'wte' => $data['main()==>A']['wt'],
+                            'cpu' => $data['main()==>A']['cpu'],
+                            'mu' => $data['main()==>A']['mu'],
+                            'pmu' => $data['main()==>A']['pmu'],
+                            'wtip' => round($data['main()==>A']['wt'] / $data['main()']['wt'], 3),
+                            'wtep' => round($data['main()==>A']['wt'] / $data['main()']['wt'], 3),
+                            'cpup' => round($data['main()==>A']['cpu'] / $data['main()']['cpu'], 3),
+                        ],
                     ],
-                    [
-                        'id' => 4,
-                        'label' => 'A',
-                        'ct' => $data['main()==>A']['ct'],
-                        'wt' => $data['main()==>A']['wt'],
-                        'wte' => $data['main()==>A']['wt'],
-                        'cpu' => $data['main()==>A']['cpu'],
-                        'mu' => $data['main()==>A']['mu'],
-                        'pmu' => $data['main()==>A']['pmu'],
-                        'wtip' => round($data['main()==>A']['wt'] / $data['main()']['wt'], 3),
-                        'wtep' => round($data['main()==>A']['wt'] / $data['main()']['wt'], 3),
-                        'cpup' => round($data['main()==>A']['cpu'] / $data['main()']['cpu'], 3),
+                    'calls' => [
+                        [
+                            'from' => 0,
+                            'to' => 4,
+                            'value' => round($data['main()==>A']['wt'] / $data['main()']['wt'], 3),
+                            'ct' => $data['main()==>A']['ct'],
+                            'wt' => $data['main()==>A']['wt'],
+                            'cpu' => $data['main()==>A']['cpu'],
+                            'mu' => $data['main()==>A']['mu'],
+                            'pmu' => $data['main()==>A']['pmu'],
+                        ],
                     ],
-                ],
-                'calls' => [
-                    [
-                        'from' => 0,
-                        'to' => 4,
-                        'value' => round($data['main()==>A']['wt'] / $data['main()']['wt'], 3),
-                        'ct' => $data['main()==>A']['ct'],
-                        'wt' => $data['main()==>A']['wt'],
-                        'cpu' => $data['main()==>A']['cpu'],
-                        'mu' => $data['main()==>A']['mu'],
-                        'pmu' => $data['main()==>A']['pmu'],
-                    ]
-                ]
-            ])
+                ])
         ;
     }
 
@@ -118,7 +126,7 @@ class Profile extends atoum
      *          |        |
      * main() --+        +--> C
      *          |        |
-     *          +--> B --+
+     *          +--> B --+.
      */
     public function testTwoCallersOneCallee()
     {
@@ -161,7 +169,7 @@ class Profile extends atoum
                         'pmu' => 0,
                     ],
                 ],
-                $profile = $this->newTestedInstance($data),
+                $profile = $this->newTestedInstance(['profile' => $data]),
                 $name = uniqid()
             )
             ->then
@@ -169,7 +177,11 @@ class Profile extends atoum
                     'version' => \jubianchi\ProfIt\PROFIT_PROFILE_VERSION,
                     'name' => $name,
                     'date' => (new \DateTimeImmutable($this->date))->format(DATE_ISO8601),
-                    'hash' => '11d80572482d6db5ed239209d785e287',
+                    'hash' => 'f1289d503075ecb65637cbb5a10aa48d',
+                    'php' => null,
+                    'osf' => null,
+                    'os' => null,
+                    'sapi' => null,
                     'functions' => [
                         [
                             'id' => 0,
@@ -222,7 +234,7 @@ class Profile extends atoum
                             'wtip' => round(($data['A==>C']['wt'] + $data['B==>C']['wt']) / $data['main()']['wt'], 3),
                             'wtep' => round(($data['A==>C']['wt'] + $data['B==>C']['wt']) / $data['main()']['wt'], 3),
                             'cpup' => round(($data['A==>C']['cpu'] + $data['B==>C']['cpu']) / $data['main()']['cpu'], 3),
-                        ]
+                        ],
                     ],
                     'calls' => [
                         [
@@ -233,7 +245,7 @@ class Profile extends atoum
                             'wt' => $data['main()==>A']['wt'],
                             'cpu' => $data['main()==>A']['cpu'],
                             'mu' => $data['main()==>A']['mu'],
-                            'pmu' => $data['main()==>A']['pmu']
+                            'pmu' => $data['main()==>A']['pmu'],
                         ],
                         [
                             'from' => 0,
@@ -243,7 +255,7 @@ class Profile extends atoum
                             'wt' => $data['main()==>B']['wt'],
                             'cpu' => $data['main()==>B']['cpu'],
                             'mu' => $data['main()==>B']['mu'],
-                            'pmu' => $data['main()==>B']['pmu']
+                            'pmu' => $data['main()==>B']['pmu'],
                         ],
                         [
                             'from' => 4,
@@ -253,7 +265,7 @@ class Profile extends atoum
                             'wt' => $data['A==>C']['wt'],
                             'cpu' => $data['A==>C']['cpu'],
                             'mu' => $data['A==>C']['mu'],
-                            'pmu' => $data['A==>C']['pmu']
+                            'pmu' => $data['A==>C']['pmu'],
                         ],
                         [
                             'from' => 5,
@@ -263,9 +275,9 @@ class Profile extends atoum
                             'wt' => $data['B==>C']['wt'],
                             'cpu' => $data['B==>C']['cpu'],
                             'mu' => $data['B==>C']['mu'],
-                            'pmu' => $data['B==>C']['pmu']
+                            'pmu' => $data['B==>C']['pmu'],
                         ],
-                    ]
+                    ],
                 ])
         ;
     }
@@ -275,7 +287,7 @@ class Profile extends atoum
      *                |
      * main() --> A --+
      *                |
-     *                +--> C
+     *                +--> C.
      */
     public function testOneCallerTwoCallees()
     {
@@ -310,9 +322,8 @@ class Profile extends atoum
                         'mu' => 10,
                         'pmu' => 0,
                     ],
-
                 ],
-                $profile = $this->newTestedInstance($data),
+                $profile = $this->newTestedInstance(['profile' => $data]),
                 $name = uniqid()
             )
             ->then
@@ -320,7 +331,11 @@ class Profile extends atoum
                     'version' => \jubianchi\ProfIt\PROFIT_PROFILE_VERSION,
                     'name' => $name,
                     'date' => (new \DateTimeImmutable($this->date))->format(DATE_ISO8601),
-                    'hash' => '39f98329a9ff062a9bf6b2d3985e3a9c',
+                    'hash' => '649699cb36d5df50fbe7cd7ae4d46c88',
+                    'php' => null,
+                    'osf' => null,
+                    'os' => null,
+                    'sapi' => null,
                     'functions' => [
                         [
                             'id' => 0,
@@ -384,7 +399,7 @@ class Profile extends atoum
                             'wt' => $data['main()==>A']['wt'],
                             'cpu' => $data['main()==>A']['cpu'],
                             'mu' => $data['main()==>A']['mu'],
-                            'pmu' => $data['main()==>A']['pmu']
+                            'pmu' => $data['main()==>A']['pmu'],
                         ],
                         [
                             'from' => 4,
@@ -394,7 +409,7 @@ class Profile extends atoum
                             'wt' => $data['A==>B']['wt'],
                             'cpu' => $data['A==>B']['cpu'],
                             'mu' => $data['A==>B']['mu'],
-                            'pmu' => $data['A==>B']['pmu']
+                            'pmu' => $data['A==>B']['pmu'],
                         ],
                         [
                             'from' => 4,
@@ -404,9 +419,9 @@ class Profile extends atoum
                             'wt' => $data['A==>C']['wt'],
                             'cpu' => $data['A==>C']['cpu'],
                             'mu' => $data['A==>C']['mu'],
-                            'pmu' => $data['A==>C']['pmu']
+                            'pmu' => $data['A==>C']['pmu'],
                         ],
-                    ]
+                    ],
                 ])
         ;
     }
@@ -425,9 +440,13 @@ class Profile extends atoum
                     'version' => \jubianchi\ProfIt\PROFIT_PROFILE_VERSION,
                     'name' => 'profile_'.$timestamp,
                     'date' => (new \DateTimeImmutable($this->date))->format(DATE_ISO8601),
-                    'hash' => 'b49a6991f0854831529db58596424333',
+                    'hash' => '7b2a43cc65362ea95996b76939578ed7',
+                    'php' => null,
+                    'osf' => null,
+                    'os' => null,
+                    'sapi' => null,
                     'functions' => [],
-                    'calls' => []
+                    'calls' => [],
                 ])
         ;
     }
@@ -444,11 +463,15 @@ class Profile extends atoum
             ->then
                 ->array($this->testedInstance->dump())->isEqualTo([
                     'version' => \jubianchi\ProfIt\PROFIT_PROFILE_VERSION,
-                    'name' => PHP_BINARY . ' ' . implode(' ', $_SERVER['argv']),
+                    'name' => PHP_BINARY.' '.implode(' ', $_SERVER['argv']),
                     'date' => (new \DateTimeImmutable($this->date))->format(DATE_ISO8601),
-                    'hash' => 'b49a6991f0854831529db58596424333',
+                    'hash' => '7b2a43cc65362ea95996b76939578ed7',
+                    'php' => null,
+                    'osf' => null,
+                    'os' => null,
+                    'sapi' => null,
                     'functions' => [],
-                    'calls' => []
+                    'calls' => [],
                 ])
         ;
     }
@@ -469,21 +492,61 @@ class Profile extends atoum
             ->then
                 ->array($this->testedInstance->dump())->isEqualTo([
                     'version' => \jubianchi\ProfIt\PROFIT_PROFILE_VERSION,
-                    'name' => $_SERVER['REQUEST_METHOD'] . ' http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'],
+                    'name' => $_SERVER['REQUEST_METHOD'].' http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'],
                     'date' => (new \DateTimeImmutable($this->date))->format(DATE_ISO8601),
-                    'hash' => 'b49a6991f0854831529db58596424333',
+                    'hash' => '7b2a43cc65362ea95996b76939578ed7',
+                    'php' => null,
+                    'osf' => null,
+                    'os' => null,
+                    'sapi' => null,
                     'functions' => [],
-                    'calls' => []
+                    'calls' => [],
                 ])
             ->if($_SERVER['HTTPS'] = 'yes')
             ->then
                 ->array($this->testedInstance->dump())->isEqualTo([
                     'version' => \jubianchi\ProfIt\PROFIT_PROFILE_VERSION,
-                    'name' => $_SERVER['REQUEST_METHOD'] . ' https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'],
+                    'name' => $_SERVER['REQUEST_METHOD'].' https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'],
                     'date' => (new \DateTimeImmutable($this->date))->format(DATE_ISO8601),
-                    'hash' => 'b49a6991f0854831529db58596424333',
+                    'hash' => '7b2a43cc65362ea95996b76939578ed7',
+                    'php' => null,
+                    'osf' => null,
+                    'os' => null,
+                    'sapi' => null,
                     'functions' => [],
-                    'calls' => []
+                    'calls' => [],
+                ])
+        ;
+    }
+
+    public function testDumpPhpRuntimeEnv()
+    {
+        $this
+            ->given(
+                $data = [
+                    'php' => $this->constant->PHP_VERSION = '7.1.2',
+                    'osf' => $this->constant->PHP_OS_FAMILY = 'Linux',
+                    'os' => $this->constant->PHP_OS = 'Ubuntu LTS',
+                    'sapi' => $this->constant->PHP_SAPI = 'cli',
+                    'profile' => [],
+                ],
+                $this->function->time = $timestamp = time(),
+                $profile = $this->newTestedInstance($data),
+                $name = uniqid()
+            )
+            ->if($_SERVER['argv'] = null)
+            ->then
+                ->array($this->testedInstance->dump())->isEqualTo([
+                    'version' => \jubianchi\ProfIt\PROFIT_PROFILE_VERSION,
+                    'name' => 'profile_'.$timestamp,
+                    'date' => (new \DateTimeImmutable($this->date))->format(DATE_ISO8601),
+                    'hash' => '38f81e398a3d7bc66cb9c0ea6329b59e',
+                    'php' => $this->constant->PHP_VERSION ,
+                    'osf' => $this->constant->PHP_OS_FAMILY,
+                    'os' => $this->constant->PHP_OS,
+                    'sapi' => $this->constant->PHP_SAPI,
+                    'functions' => [],
+                    'calls' => [],
                 ])
         ;
     }
