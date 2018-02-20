@@ -1,0 +1,159 @@
+{
+    "$id": "version-1",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+        "version": {
+            "$id": "/properties/version",
+            "type": "integer",
+            "enum": [1]
+        },
+        "name": {
+            "$id": "/properties/name",
+            "type": "string"
+        },
+        "date": {
+            "$id": "/properties/date",
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\+\\d{4}$"
+        },
+        "hash": {
+            "$id": "/properties/hash",
+            "type": "string",
+            "pattern": "^[a-f0-9]{32,}$"
+        },
+        "functions": {
+            "$id": "/properties/functions",
+            "type": "array",
+            "items": {
+                "$id": "/properties/functions/items",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "$id": "/properties/functions/items/properties/id",
+                        "type": "integer"
+                    },
+                    "label": {
+                        "$id": "/properties/functions/items/properties/label",
+                        "type": "string"
+                    },
+                    "ct": {
+                        "$id": "/properties/functions/items/properties/ct",
+                        "type": "integer",
+                        "default": 1
+                    },
+                    "wt": {
+                        "$id": "/properties/functions/items/properties/wt",
+                        "type": "integer"
+                    },
+                    "wte": {
+                        "$id": "/properties/functions/items/properties/wte",
+                        "type": "integer"
+                    },
+                    "cpu": {
+                        "$id": "/properties/functions/items/properties/cpu",
+                        "type": "integer"
+                    },
+                    "mu": {
+                        "$id": "/properties/functions/items/properties/mu",
+                        "type": "integer"
+                    },
+                    "pmu": {
+                        "$id": "/properties/functions/items/properties/pmu",
+                        "type": "integer"
+                    },
+                    "wtip": {
+                        "$id": "/properties/functions/items/properties/wtip",
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1
+                    },
+                    "wtep": {
+                        "$id": "/properties/functions/items/properties/wtep",
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1
+                    },
+                    "cpup": {
+                        "$id": "/properties/functions/items/properties/cpup",
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1
+                    }
+                },
+                "required": [
+                    "id",
+                    "label",
+                    "wt",
+                    "wte",
+                    "cpu",
+                    "mu",
+                    "pmu",
+                    "wtip",
+                    "wtep",
+                    "cpup"
+                ]
+            }
+        },
+        "calls": {
+            "$id": "/properties/calls",
+            "type": "array",
+            "items": {
+                "$id": "/properties/calls/items",
+                "type": "object",
+                "properties": {
+                    "from": {
+                        "$id": "/properties/calls/items/properties/from",
+                        "type": "integer"
+                    },
+                    "to": {
+                        "$id": "/properties/calls/items/properties/to",
+                        "type": "integer"
+                    },
+                    "value": {
+                        "$id": "/properties/calls/items/properties/value",
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1
+                    },
+                    "ct": {
+                        "$id": "/properties/calls/items/properties/ct",
+                        "type": "integer",
+                        "default": 1
+                    },
+                    "wt": {
+                        "$id": "/properties/calls/items/properties/wt",
+                        "type": "integer"
+                    },
+                    "cpu": {
+                        "$id": "/properties/calls/items/properties/cpu",
+                        "type": "integer"
+                    },
+                    "mu": {
+                        "$id": "/properties/calls/items/properties/mu",
+                        "type": "integer"
+                    },
+                    "pmu": {
+                        "$id": "/properties/calls/items/properties/pmu",
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "from",
+                    "to",
+                    "value",
+                    "wt",
+                    "cpu",
+                    "mu",
+                    "pmu"
+                ]
+            }
+        }
+    },
+    "required": [
+        "version",
+        "name",
+        "date",
+        "hash"
+    ]
+}
