@@ -23,7 +23,13 @@ class Profiler
     {
         self::canStop();
 
-        $profile = new Profile(tideways_xhprof_disable());
+        $profile = new Profile([
+            'php' => PHP_VERSION,
+            'osf' => PHP_OS_FAMILY,
+            'os' => PHP_OS,
+            'sapi' => PHP_SAPI,
+            'profile' => tideways_xhprof_disable(),
+        ]);
 
         self::$started = false;
 
