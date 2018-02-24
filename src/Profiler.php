@@ -28,6 +28,10 @@ class Profiler
             'osf' => PHP_OS_FAMILY,
             'os' => PHP_OS,
             'sapi' => PHP_SAPI,
+            'extensions' => [
+                'xdebug'=> extension_loaded('xdebug'),
+                'opcache'=> extension_loaded('Zend OPcache')
+            ],
             'profile' => tideways_xhprof_disable(),
         ]);
 
