@@ -30,11 +30,15 @@ class Profile extends atoum
                 'version' => \jubianchi\ProfIt\PROFIT_PROFILE_VERSION,
                 'name' => $name,
                 'date' => (new \DateTimeImmutable($this->date))->format(DATE_ISO8601),
-                'hash' => '7b2a43cc65362ea95996b76939578ed7',
+                'hash' => '1777238b3d11ad84c9fea42dd12a28b7',
                 'php' => null,
                 'osf' => null,
                 'os' => null,
                 'sapi' => null,
+                'extensions' => [
+                    'xdebug' => null,
+                    'opcache' => null,
+                ],
                 'functions' => [],
                 'calls' => [],
             ])
@@ -72,11 +76,15 @@ class Profile extends atoum
                     'version' => \jubianchi\ProfIt\PROFIT_PROFILE_VERSION,
                     'name' => $name,
                     'date' => (new \DateTimeImmutable($this->date))->format(DATE_ISO8601),
-                    'hash' => '1d1e9ebbe2a7b6d83954a01f43db7bbe',
+                    'hash' => 'c812cd049fd45dba6b79e12127dfc1c1',
                     'php' => null,
                     'osf' => null,
                     'os' => null,
                     'sapi' => null,
+                    'extensions' => [
+                        'xdebug' => null,
+                        'opcache' => null,
+                    ],
                     'functions' => [
                         [
                             'id' => 0,
@@ -177,11 +185,15 @@ class Profile extends atoum
                     'version' => \jubianchi\ProfIt\PROFIT_PROFILE_VERSION,
                     'name' => $name,
                     'date' => (new \DateTimeImmutable($this->date))->format(DATE_ISO8601),
-                    'hash' => 'f1289d503075ecb65637cbb5a10aa48d',
+                    'hash' => '92c46e1e0bef110971c3458acdf3478c',
                     'php' => null,
                     'osf' => null,
                     'os' => null,
                     'sapi' => null,
+                    'extensions' => [
+                        'xdebug' => null,
+                        'opcache' => null,
+                    ],
                     'functions' => [
                         [
                             'id' => 0,
@@ -331,11 +343,15 @@ class Profile extends atoum
                     'version' => \jubianchi\ProfIt\PROFIT_PROFILE_VERSION,
                     'name' => $name,
                     'date' => (new \DateTimeImmutable($this->date))->format(DATE_ISO8601),
-                    'hash' => '649699cb36d5df50fbe7cd7ae4d46c88',
+                    'hash' => '4c9e2c06c6e8e34ec1b01f15fd3b6ec2',
                     'php' => null,
                     'osf' => null,
                     'os' => null,
                     'sapi' => null,
+                    'extensions' => [
+                        'xdebug' => null,
+                        'opcache' => null,
+                    ],
                     'functions' => [
                         [
                             'id' => 0,
@@ -440,11 +456,15 @@ class Profile extends atoum
                     'version' => \jubianchi\ProfIt\PROFIT_PROFILE_VERSION,
                     'name' => 'profile_'.$timestamp,
                     'date' => (new \DateTimeImmutable($this->date))->format(DATE_ISO8601),
-                    'hash' => '7b2a43cc65362ea95996b76939578ed7',
+                    'hash' => '1777238b3d11ad84c9fea42dd12a28b7',
                     'php' => null,
                     'osf' => null,
                     'os' => null,
                     'sapi' => null,
+                    'extensions' => [
+                        'xdebug' => null,
+                        'opcache' => null,
+                    ],
                     'functions' => [],
                     'calls' => [],
                 ])
@@ -465,11 +485,15 @@ class Profile extends atoum
                     'version' => \jubianchi\ProfIt\PROFIT_PROFILE_VERSION,
                     'name' => PHP_BINARY.' '.implode(' ', $_SERVER['argv']),
                     'date' => (new \DateTimeImmutable($this->date))->format(DATE_ISO8601),
-                    'hash' => '7b2a43cc65362ea95996b76939578ed7',
+                    'hash' => '1777238b3d11ad84c9fea42dd12a28b7',
                     'php' => null,
                     'osf' => null,
                     'os' => null,
                     'sapi' => null,
+                    'extensions' => [
+                        'xdebug' => null,
+                        'opcache' => null,
+                    ],
                     'functions' => [],
                     'calls' => [],
                 ])
@@ -494,11 +518,15 @@ class Profile extends atoum
                     'version' => \jubianchi\ProfIt\PROFIT_PROFILE_VERSION,
                     'name' => $_SERVER['REQUEST_METHOD'].' http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'],
                     'date' => (new \DateTimeImmutable($this->date))->format(DATE_ISO8601),
-                    'hash' => '7b2a43cc65362ea95996b76939578ed7',
+                    'hash' => '1777238b3d11ad84c9fea42dd12a28b7',
                     'php' => null,
                     'osf' => null,
                     'os' => null,
                     'sapi' => null,
+                    'extensions' => [
+                        'xdebug' => null,
+                        'opcache' => null,
+                    ],
                     'functions' => [],
                     'calls' => [],
                 ])
@@ -508,12 +536,16 @@ class Profile extends atoum
                     'version' => \jubianchi\ProfIt\PROFIT_PROFILE_VERSION,
                     'name' => $_SERVER['REQUEST_METHOD'].' https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'],
                     'date' => (new \DateTimeImmutable($this->date))->format(DATE_ISO8601),
-                    'hash' => '7b2a43cc65362ea95996b76939578ed7',
+                    'hash' => '1777238b3d11ad84c9fea42dd12a28b7',
                     'php' => null,
                     'osf' => null,
                     'os' => null,
                     'sapi' => null,
                     'functions' => [],
+                    'extensions' => [
+                        'xdebug' => null,
+                        'opcache' => null,
+                    ],
                     'calls' => [],
                 ])
         ;
@@ -540,12 +572,100 @@ class Profile extends atoum
                     'version' => \jubianchi\ProfIt\PROFIT_PROFILE_VERSION,
                     'name' => 'profile_'.$timestamp,
                     'date' => (new \DateTimeImmutable($this->date))->format(DATE_ISO8601),
-                    'hash' => '38f81e398a3d7bc66cb9c0ea6329b59e',
+                    'hash' => '5e90ecfbd284cbad628543c1f4ece6b9',
                     'php' => $this->constant->PHP_VERSION ,
                     'osf' => $this->constant->PHP_OS_FAMILY,
                     'os' => $this->constant->PHP_OS,
                     'sapi' => $this->constant->PHP_SAPI,
                     'functions' => [],
+                    'extensions' => [
+                        'xdebug' => null,
+                        'opcache' => null,
+                    ],
+                    'calls' => [],
+                ])
+        ;
+    }
+
+
+
+    public function testDumpPhpExtensions()
+    {
+        $this
+            ->given(
+                $data = [
+                    'php' => $this->constant->PHP_VERSION = '7.1.2',
+                    'osf' => $this->constant->PHP_OS_FAMILY = 'Linux',
+                    'os' => $this->constant->PHP_OS = 'Ubuntu LTS',
+                    'sapi' => $this->constant->PHP_SAPI = 'cli',
+                    'extensions' => [
+                        'xdebug' => false,
+                        'opcache' => false
+                    ],
+                    'profile' => [],
+                ],
+                $this->function->time = $timestamp = time(),
+                $profile = $this->newTestedInstance($data),
+                $name = uniqid()
+            )
+            ->if($_SERVER['argv'] = null)
+            ->then
+                ->array($this->testedInstance->dump())->isEqualTo([
+                    'version' => \jubianchi\ProfIt\PROFIT_PROFILE_VERSION,
+                    'name' => 'profile_'.$timestamp,
+                    'date' => (new \DateTimeImmutable($this->date))->format(DATE_ISO8601),
+                    'hash' => '7692c37f00d35a69c6d52e07bcd6c3ba',
+                    'php' => $this->constant->PHP_VERSION ,
+                    'osf' => $this->constant->PHP_OS_FAMILY,
+                    'os' => $this->constant->PHP_OS,
+                    'sapi' => $this->constant->PHP_SAPI,
+                    'functions' => [],
+                    'extensions' => [
+                        'xdebug' => false,
+                        'opcache' => false,
+                    ],
+                    'calls' => [],
+                ])
+            ->if(
+                $data['extensions']['xdebug'] = true,
+                $profile = $this->newTestedInstance($data)
+            )
+            ->then
+                ->array($this->testedInstance->dump())->isEqualTo([
+                    'version' => \jubianchi\ProfIt\PROFIT_PROFILE_VERSION,
+                    'name' => 'profile_'.$timestamp,
+                    'date' => (new \DateTimeImmutable($this->date))->format(DATE_ISO8601),
+                    'hash' => '5a3ec23a64079aec60b25306cc5ca446',
+                    'php' => $this->constant->PHP_VERSION ,
+                    'osf' => $this->constant->PHP_OS_FAMILY,
+                    'os' => $this->constant->PHP_OS,
+                    'sapi' => $this->constant->PHP_SAPI,
+                    'functions' => [],
+                    'extensions' => [
+                        'xdebug' => true,
+                        'opcache' => false,
+                    ],
+                    'calls' => [],
+                ])
+            ->if(
+                $data['extensions']['opcache'] = true,
+                $profile = $this->newTestedInstance($data)
+                )
+            ->then
+                ->array($this->testedInstance->dump())->isEqualTo([
+                    'version' => \jubianchi\ProfIt\PROFIT_PROFILE_VERSION,
+                    'name' => 'profile_'.$timestamp,
+                    'date' => (new \DateTimeImmutable($this->date))->format(DATE_ISO8601),
+                    'hash' => '7e0f4bc92bdbcd4a09ef7abb26a13a4c',
+                    'php' => $this->constant->PHP_VERSION ,
+                    'osf' => $this->constant->PHP_OS_FAMILY,
+                    'os' => $this->constant->PHP_OS,
+                    'sapi' => $this->constant->PHP_SAPI,
+                    'functions' => [],
+                    'extensions' => [
+                        'xdebug' => true,
+                        'opcache' => true,
+                    ],
                     'calls' => [],
                 ])
         ;

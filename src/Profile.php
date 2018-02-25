@@ -24,6 +24,10 @@ class Profile
                 'osf' => null,
                 'os' => null,
                 'sapi' => null,
+                'extensions' => [
+                    'xdebug'=> null,
+                    'opcache'=> null,
+                ],
                 'profile' => [],
             ],
             $data
@@ -63,6 +67,10 @@ class Profile
             'osf' => $this->data['osf'],
             'os' => $this->data['os'],
             'sapi' => $this->data['sapi'],
+            'extensions' => [
+                'xdebug'=> $this->data['extensions']['xdebug'],
+                'opcache'=> $this->data['extensions']['opcache'],
+            ],
             'functions' => array_values($vertices),
             'calls' => $edges,
         ];
