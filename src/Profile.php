@@ -25,8 +25,8 @@ class Profile
                 'os' => null,
                 'sapi' => null,
                 'extensions' => [
-                    'xdebug'=> null,
-                    'opcache'=> null,
+                    'xdebug' => null,
+                    'opcache' => null,
                 ],
                 'profile' => [],
             ],
@@ -68,8 +68,8 @@ class Profile
             'os' => $this->data['os'],
             'sapi' => $this->data['sapi'],
             'extensions' => [
-                'xdebug'=> $this->data['extensions']['xdebug'],
-                'opcache'=> $this->data['extensions']['opcache'],
+                'xdebug' => $this->data['extensions']['xdebug'],
+                'opcache' => $this->data['extensions']['opcache'],
             ],
             'functions' => array_values($vertices),
             'calls' => $edges,

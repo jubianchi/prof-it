@@ -573,7 +573,7 @@ class Profile extends atoum
                     'name' => 'profile_'.$timestamp,
                     'date' => (new \DateTimeImmutable($this->date))->format(DATE_ISO8601),
                     'hash' => '5e90ecfbd284cbad628543c1f4ece6b9',
-                    'php' => $this->constant->PHP_VERSION ,
+                    'php' => $this->constant->PHP_VERSION,
                     'osf' => $this->constant->PHP_OS_FAMILY,
                     'os' => $this->constant->PHP_OS,
                     'sapi' => $this->constant->PHP_SAPI,
@@ -587,8 +587,6 @@ class Profile extends atoum
         ;
     }
 
-
-
     public function testDumpPhpExtensions()
     {
         $this
@@ -600,7 +598,7 @@ class Profile extends atoum
                     'sapi' => $this->constant->PHP_SAPI = 'cli',
                     'extensions' => [
                         'xdebug' => false,
-                        'opcache' => false
+                        'opcache' => false,
                     ],
                     'profile' => [],
                 ],
@@ -615,7 +613,7 @@ class Profile extends atoum
                     'name' => 'profile_'.$timestamp,
                     'date' => (new \DateTimeImmutable($this->date))->format(DATE_ISO8601),
                     'hash' => '7692c37f00d35a69c6d52e07bcd6c3ba',
-                    'php' => $this->constant->PHP_VERSION ,
+                    'php' => $this->constant->PHP_VERSION,
                     'osf' => $this->constant->PHP_OS_FAMILY,
                     'os' => $this->constant->PHP_OS,
                     'sapi' => $this->constant->PHP_SAPI,
@@ -636,7 +634,7 @@ class Profile extends atoum
                     'name' => 'profile_'.$timestamp,
                     'date' => (new \DateTimeImmutable($this->date))->format(DATE_ISO8601),
                     'hash' => '5a3ec23a64079aec60b25306cc5ca446',
-                    'php' => $this->constant->PHP_VERSION ,
+                    'php' => $this->constant->PHP_VERSION,
                     'osf' => $this->constant->PHP_OS_FAMILY,
                     'os' => $this->constant->PHP_OS,
                     'sapi' => $this->constant->PHP_SAPI,
@@ -657,7 +655,7 @@ class Profile extends atoum
                     'name' => 'profile_'.$timestamp,
                     'date' => (new \DateTimeImmutable($this->date))->format(DATE_ISO8601),
                     'hash' => '7e0f4bc92bdbcd4a09ef7abb26a13a4c',
-                    'php' => $this->constant->PHP_VERSION ,
+                    'php' => $this->constant->PHP_VERSION,
                     'osf' => $this->constant->PHP_OS_FAMILY,
                     'os' => $this->constant->PHP_OS,
                     'sapi' => $this->constant->PHP_SAPI,
