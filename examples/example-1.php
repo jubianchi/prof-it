@@ -12,7 +12,8 @@ function two(int $size): array
     return array_filter(range(0, $size), function ($i) { return $i % 2; });
 }
 
-$profiler = new \jubianchi\ProfIt\Profiler();
+$profiler = (new \jubianchi\ProfIt\Profiler())
+    ->excludeNamespaces('\\');
 $profiler->start();
 
 one(1000);

@@ -4,9 +4,46 @@ declare(strict_types=1);
 
 namespace jubianchi\ProfIt;
 
+use jubianchi\ProfIt\Profiler\Filter;
+
 class Profiler
 {
     private static $started = false;
+
+    /**
+     * @var Filter
+     */
+    private $filter;
+
+    public function excludeNamespaces(string ...$namespaces): self
+    {
+        $profiler = clone $this;
+
+        if (null === $this->filter) {
+            $profiler->filter = new Filter();
+        }
+
+        foreach ($namespaces as $namespace) {
+            $profiler->filter = $profiler->filter->withExcludedNamespace($namespace);
+        }
+
+        return $profiler;
+    }
+
+    public function includeNamespaces(string ...$namespaces): self
+    {
+        $profiler = clone $this;
+
+        if (null === $this->filter) {
+            $profiler->filter = new Filter();
+        }
+
+        foreach ($namespaces as $namespace) {
+            $profiler->filter = $profiler->filter->withIncludedNamespace($namespace);
+        }
+
+        return $profiler;
+    }
 
     public function start(int $flags = null): self
     {
@@ -23,6 +60,7 @@ class Profiler
     {
         self::canStop();
 
+        $data = tideways_xhprof_disable();
         $profile = new Profile([
             'php' => PHP_VERSION,
             'osf' => PHP_OS_FAMILY,
@@ -32,7 +70,7 @@ class Profiler
                 'xdebug' => extension_loaded('xdebug'),
                 'opcache' => extension_loaded('Zend OPcache'),
             ],
-            'profile' => tideways_xhprof_disable(),
+            'profile' => null === $this->filter ? $data : $this->filter->filter($data),
         ]);
 
         self::$started = false;
@@ -58,17 +96,15 @@ class Profiler
 
     private static function canStart()
     {
-        self::isExtensionLoaded();
-
         if (self::$started) {
             throw new \BadMethodCallException('Profiler has already been started');
         }
+
+        self::isExtensionLoaded();
     }
 
     private static function canStop()
     {
-        self::isExtensionLoaded();
-
         if (!self::$started) {
             throw new \BadMethodCallException('Profiler has not been started');
         }
