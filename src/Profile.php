@@ -15,6 +15,11 @@ class Profile
      */
     private $graph;
 
+    /**
+     * @var array
+     */
+    private $data;
+
     public function __construct(array $data, Graph $graph = null)
     {
         $this->graph = $graph ?: new Graph();
