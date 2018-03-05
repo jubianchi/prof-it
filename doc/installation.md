@@ -1,8 +1,8 @@
-# prof-it - Installation
+# Installation
 
 Make sure you have PHP 7 available on the machine you want to run the profiler. 
 
-## How to install XHProf
+## XHProf
 
 XHProf is used by the profiler to collect data while your scripts are running. You will have to manually compile and 
 install this extension.
@@ -12,9 +12,9 @@ install this extension.
 #### On MacOS
 
 To make things easy, we strongly encourage you to use [Homebrew](https://brew.sh/). It will let you install the most 
-recent PHP versions and development tools which you will need to compile the extension.
+recent PHP version and development tools you will need to compile the extension.
 
-```sh
+```bash
 brew install php72
 brew link --force php72
 ```
@@ -23,7 +23,7 @@ brew link --force php72
 
 On Debian, PHP and the development tools are available as two distinct packages. 
 
-```sh
+```bash
 sudo apt-get update
 sudo apt-get install php-dev
 ```
@@ -32,7 +32,7 @@ sudo apt-get install php-dev
 
 On RHEL, PHP and the development tools are also available as two distinct packages. 
 
-```sh
+```bash
 yum install php-devel
 ```
 
@@ -43,7 +43,7 @@ A new version of XHProf has been published by the cool guys at [Tideways](https:
 
 Compiling and enabling this extension is really easy:
 
-```sh
+```bash
 git clone https://github.com/tideways/php-xhprof-extension.git /tmp/php-xhprof-extension
 cd !$
 
@@ -58,28 +58,28 @@ _Depending on your OS, you might get permission errors when running `make instal
 Now that the PHP extension is compiled, you will have to manually enable it. Find your PHP configuration directory using 
 this command:
 
-```
+```bash
 php -i | grep 'Scan this dir for additional .ini files' | grep -oE '[^ ]*$'
 ```
 
 Now let's create the configuration file for the XHProf extension and see if it works:
 
-```
+```bash
 echo "extension=tideways_xhprof.so" | tee $(php -i | grep 'Scan this dir for additional .ini files' | grep -oE '[^ ]*$')
 php -m | grep xhprof
 ```
 
 You should see `tideways_xhprof` in the output if everything went fine. If it's OK, you are now ready to profile.
 
-## How to install the PHP library
+## PHP library
 
 The PHP library will be used in the application you want to profile. The only installation method is [Composer](https://getcomposer.org/).
 
-```sh
+```bash
 composer require --dev jubianchi/prof-it
 ```
 
-## How to install the client application
+## Client application
 
 To analyze the results of your profiling sessions, you will need the client application. It will let you open the 
 profiles and navigate trough them.
@@ -111,10 +111,10 @@ The client application is available as a _rpm_ package. Download the latest vers
 
 Now open the file by double-clicking on it and your package manager should guide you through the installation process.
 
-_Depending on your distro, you might get errors when installing the package (somrthing about unsupported OS). If you 
+_Depending on your distro, you might get errors when installing the package (something about unsupported OS). If you 
 run through this issue, use the following command to install the application:_
 
-```sh
+```bash
 yum install lsb libXScrnSaver
 rpm -i --ignoreos prof-it-*.x86_64.rpm
 ```
